@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-login',
@@ -11,7 +12,7 @@ export class UserLoginComponent {
   email: string = '';
   password: string = '';
 
-  constructor(private userService: UserService,private router:Router) { }
+  constructor(private userService: UserService,private router:Router,private toastr: ToastrService) { }
 
   
   m:any;
@@ -25,9 +26,10 @@ export class UserLoginComponent {
         this.router.navigate(['/userProducts'])
       },
       (error) => {
-        // console.error('Login failed', error);
-        alert("invalid credentials");
-       
+        console.error('Login failed', error);
+        // alert("Wrong email or password");
+        // this.toastr.remove('Product added to cart successfully', 'Remove');
+        this.toastr.success('Wrong email or password');
       }
     );
   }

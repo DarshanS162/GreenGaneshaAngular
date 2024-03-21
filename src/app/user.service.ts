@@ -40,5 +40,11 @@ export class UserService {
     return this.http.get(url);
   }
 
+  getUser(uId: any): Observable<string> {
+    const url = `http://localhost:8080/fetchUserName/${uId}`;
+    return this.http.get(url, { responseType: 'text' });
+  }
 
+ 
+  
 } 

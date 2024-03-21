@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { CartService } from '../cart.service';
 import { Router } from '@angular/router';
+import { SharedServiceService } from '../shared-service.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cart',
@@ -10,7 +12,11 @@ import { Router } from '@angular/router';
 })
 export class CartComponent{
   totalPrice=0;
-  constructor(private userService:UserService,private cartService:CartService,private router:Router){}
+  constructor(private userService:UserService,
+              private cartService:CartService,
+              private router:Router,
+              private sharedService: SharedServiceService,
+              private toastr:ToastrService){}
   uid:any;
   cartItems: any[] = [];
   getStoredUid(): any {
@@ -41,7 +47,8 @@ export class CartComponent{
       (response:string) => {
         console.log(this.uid);
         if(response.indexOf('product removed from cart successfully')!=-1){
-            alert("product removed from cart successfully");
+            // alert("product removed from cart successfully");
+            this.toastr.success('product removed from cart', 'Success');
          }else{
               document.write(response);
             }
@@ -51,8 +58,11 @@ export class CartComponent{
       }
 
       m:any;
+      deliadd:any;
       placeOrder(){
+
         this.uid=this.getStoredUid();
+        // this.deliadd=this.sharedService.getDeliveryInfo();
         this.cartService.placeOrder(this.uid).subscribe(
           (response:any)=>{
             this.m = JSON.stringify(response);
