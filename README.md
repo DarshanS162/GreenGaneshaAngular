@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Greenganesha
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.3.
@@ -25,3 +26,6 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+=======
+# GreenGaneshaAngular1
+>>>>>>> 41e13b78a9fa8285deda9b76ab25229259a7a19d
